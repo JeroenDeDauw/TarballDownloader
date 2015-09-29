@@ -1,7 +1,8 @@
-Experimental SMW tarball downloading service
+# SMW tarball downloader
 
-Caution: making this service publicly accessible is not safe and might result in
-arbitrary remote code execution.
+[![Build Status](https://travis-ci.org/JeroenDeDauw/TarballDownloader.svg)](https://travis-ci.org/JeroenDeDauw/TarballDownloader)
+
+This is code for webpage on which users can request SMW and other extension tarballs to be build, which they can then download. This is useful for people that cannot run Composer on the server where their wiki is hosted.
 
 ## Requirements
 
