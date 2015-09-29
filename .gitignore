@@ -1,9 +1,9 @@
 *~
-!.*
+
+!.gitignore
+!.travis.yml
 
 composer.phar
 composer.lock
 
 vendor/
-
-.idea/
