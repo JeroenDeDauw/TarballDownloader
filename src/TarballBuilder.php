@@ -26,7 +26,7 @@ class TarballBuilder {
 	}
 
 	private function prepareBuildDirectory() {
-		exec( 'rm -r ' . escapeshellarg( $this->buildDirectory ) );
+		$this->removeBuildFiles();
 		mkdir( $this->buildDirectory );
 	}
 
@@ -59,6 +59,10 @@ class TarballBuilder {
 		exec( 'zip -r ' . escapeshellarg( $zipName ) . ' .' );
 
 		return $buildPath . '/' . $zipName;
+	}
+
+	public function removeBuildFiles() {
+		exec( 'rm -r ' . escapeshellarg( $this->buildDirectory ) );
 	}
 
 }

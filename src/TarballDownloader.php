@@ -73,6 +73,8 @@ class TarballDownloader {
 		header("Content-Length: ".filesize( $zipPath ));
 		ob_end_flush();
 		readfile($zipPath);
+
+		$this->tarballBuilder->removeBuildFiles();
 	}
 
 }

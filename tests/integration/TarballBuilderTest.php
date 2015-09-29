@@ -21,10 +21,6 @@ class TarballBuilderTest extends \PHPUnit_Framework_TestCase {
 		$this->builder = new TarballBuilder( '/tmp/tarball-build' );
 	}
 
-	public function tearDown() {
-		exec( 'rm -r /tmp/tarball-build' );
-	}
-
 	public function testBuilderCreatesComposerJson() {
 		$buildPath = $this->builder->build( [ 'diff/diff' => '@stable' ] );
 
@@ -62,6 +58,14 @@ class TarballBuilderTest extends \PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertFileInZip( $zipPath, 'StuffBeHere/vendor/autoload.php' );
+	}
+
+	public function testRemoveBuildFiles() {
+		$buildPath = $this->builder->build( [ 'diff/diff' => '@stable' ] );
+		$this->builder->removeBuildFiles();
+
+		$this->assertFalse( is_dir( $buildPath ) );
+		$this->assertFileNotExists( $buildPath . '/composer.json' );
 	}
 
 }
