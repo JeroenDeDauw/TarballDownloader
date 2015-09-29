@@ -5,6 +5,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use Silex\Application;
+use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
@@ -23,6 +24,12 @@ $app['twig.path'] = array(__DIR__.'/../templates');
 $app->get('/', function () use ($app) {
 	return $app['twig']->render('index.html', ['page' => 'home']);
 });
+
+$app['debug'] = true;
+
+$app->register(new MonologServiceProvider(), array(
+	'monolog.logfile' => __DIR__.'/../var/logs/silex.log',
+));
 
 $app->get('/download', function () use ($app) {
 	newTarballDownloader()
