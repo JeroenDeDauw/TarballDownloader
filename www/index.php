@@ -56,5 +56,5 @@ $app->get('/download-dev', function () use ($app) {
 $app->run();
 
 function newTarballDownloader() {
-	return TarballDownloader::newInstance( new TarballBuilder( '/tmp/tarball-builder' ) );
+	return TarballDownloader::newInstance( new TarballBuilder( '/tmp/tarball-builder/' . sha1( mt_rand() ) ) );
 }

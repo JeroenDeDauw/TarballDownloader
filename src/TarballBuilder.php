@@ -27,7 +27,7 @@ class TarballBuilder {
 
 	private function prepareBuildDirectory() {
 		exec( 'rm -r ' . escapeshellarg( $this->buildDirectory ) );
-		mkdir($this->buildDirectory );
+		mkdir( $this->buildDirectory );
 	}
 
 	private function createComposerJson( array $components ) {
