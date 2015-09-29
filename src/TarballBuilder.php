@@ -43,7 +43,7 @@ class TarballBuilder {
 
 	private function runComposerUpdate() {
 		chdir( $this->buildDirectory );
-		exec( escapeshellcmd( $this->composerCommand ) . ' install --no-scripts --no-plugins --optimize-autoloader' );
+		exec( escapeshellcmd( $this->composerCommand ) . ' install --no-scripts --optimize-autoloader' );
 	}
 
 	public function buildAndZip( array $components, $zipName, $topLevelDirectory = '' ) {
