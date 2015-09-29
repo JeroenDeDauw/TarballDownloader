@@ -1,4 +1,6 @@
 {
+    "name": "jeroen/tarball-downloader",
+    "description": "On demand MediaWiki extension tarball creation tool",
     "require": {
         "silex/silex": "~1.3.4",
         "twig/twig": "~1.22",
