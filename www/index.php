@@ -8,15 +8,11 @@ use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
-use Silex\Provider\ValidatorServiceProvider;
-use Silex\Provider\ServiceControllerServiceProvider;
 use TarballDownloader\TarballBuilder;
 use TarballDownloader\TarballDownloader;
 
 $app = new Application();
 $app->register(new UrlGeneratorServiceProvider());
-$app->register(new ValidatorServiceProvider());
-$app->register(new ServiceControllerServiceProvider());
 $app->register(new TwigServiceProvider());
 
 $app['twig.path'] = array(__DIR__.'/../templates');
