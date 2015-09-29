@@ -1,4 +1,4 @@
-Experimental SMW tarball downloading service
+# SMW tarball downloader
 
 [![Build Status](https://travis-ci.org/JeroenDeDauw/TarballDownloader.svg)](https://travis-ci.org/JeroenDeDauw/TarballDownloader)
 
