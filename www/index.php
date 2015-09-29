@@ -39,6 +39,7 @@ $app->get('/download-all', function () use ($app) {
 			'mediawiki/semantic-result-formats' => '@stable',
 			'mediawiki/semantic-extra-special-properties' => '@stable',
 			'mediawiki/semantic-maps' => '@stable',
+			'mediawiki/semantic-forms' => '@stable',
 		] )
 		->intoDirectory( 'Semantic MediaWiki bundle' )
 		->toFile( 'Semantic MediaWiki bundle.zip' )
