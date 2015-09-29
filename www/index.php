@@ -33,6 +33,7 @@ $app->get('/download', function () use ($app) {
 		->intoDirectory( 'Semantic MediaWiki (+dependencies)' )
 		->toFile( 'Semantic MediaWiki (+dependencies).zip' )
 		->now();
+	return '';
 });
 
 $app->get('/download-all', function () use ($app) {
@@ -47,6 +48,7 @@ $app->get('/download-all', function () use ($app) {
 		->intoDirectory( 'Semantic MediaWiki bundle' )
 		->toFile( 'Semantic MediaWiki bundle.zip' )
 		->now();
+	return '';
 });
 
 $app->get('/download-dev', function () use ($app) {
@@ -55,6 +57,7 @@ $app->get('/download-dev', function () use ($app) {
 		->intoDirectory( 'Semantic MediaWiki (development version)' )
 		->toFile( 'Semantic MediaWiki (dev).zip' )
 		->now();
+	return '';
 });
 
 $app->run();
