@@ -25,6 +25,7 @@ $app['debug'] = true;
 
 $app->register(new MonologServiceProvider(), array(
 	'monolog.logfile' => __DIR__.'/../var/logs/silex.log',
+	'monolog.level' => Monolog\Logger::DEBUG
 ));
 
 $app->get('/download', function () use ($app) {
@@ -64,6 +65,7 @@ $app->run();
 
 function newTarballDownloader() {
 	return TarballDownloader::newInstance( new TarballBuilder(
-		__DIR__ . '/../build/' . sha1( mt_rand() )
+		__DIR__ . '/../build/' . sha1( mt_rand() ),
+		$GLOBALS['app']['monolog']
 	) );
 }

@@ -2,6 +2,9 @@
 
 namespace TarballDownloader;
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -12,9 +15,12 @@ class TarballBuilder {
 
 	private $composerCommand;
 
-	public function __construct( $buildDirectory, $composerCommand = 'composer' ) {
+	private $logger;
+
+	public function __construct( $buildDirectory, LoggerInterface $logger = null ) {
 		$this->buildDirectory = $buildDirectory;
-		$this->composerCommand = $composerCommand;
+		$this->logger = $logger === null ? new NullLogger() : $logger;
+		$this->composerCommand = 'composer';
 	}
 
 	public function build( array $components ) {
@@ -42,8 +48,16 @@ class TarballBuilder {
 	}
 
 	private function runComposerUpdate() {
-		chdir( $this->buildDirectory );
-		exec( escapeshellcmd( $this->composerCommand ) . ' install --no-scripts --optimize-autoloader' );
+		$commandOutput = [];
+
+		exec(
+			escapeshellcmd( $this->composerCommand )
+				. ' install --no-scripts --optimize-autoloader --no-ansi --ignore-platform-reqs --working-dir '
+				. escapeshellarg( $this->buildDirectory ) . ' 2>&1',
+			$commandOutput
+		);
+
+		array_map( [$this->logger, 'info'], $commandOutput );
 	}
 
 	public function buildAndZip( array $components, $zipName, $topLevelDirectory = '' ) {
@@ -53,7 +67,7 @@ class TarballBuilder {
 
 		if ( $topLevelDirectory !== '' ) {
 			mkdir( $topLevelDirectory );
-			exec( 'mv * ' . escapeshellarg( $topLevelDirectory ) );
+			exec( 'mv * ' . escapeshellarg( $topLevelDirectory ) . ' 2>&1' );
 		}
 
 		exec( 'zip -r ' . escapeshellarg( $zipName ) . ' .' );
@@ -62,7 +76,7 @@ class TarballBuilder {
 	}
 
 	public function removeBuildFiles() {
-		exec( 'rm -r ' . escapeshellarg( $this->buildDirectory ) );
+		exec( 'rm -r ' . escapeshellarg( $this->buildDirectory ). ' 2>&1' );
 	}
 
 }
