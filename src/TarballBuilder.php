@@ -57,7 +57,7 @@ class TarballBuilder {
 			$commandOutput
 		);
 
-		array_map( [$this->logger, 'info'], $commandOutput );
+		array_map( [$this->logger, 'debug'], $commandOutput );
 	}
 
 	public function buildAndZip( array $components, $zipName, $topLevelDirectory = '' ) {
