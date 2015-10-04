@@ -1,0 +1,11 @@
+{
+	"bundle": {
+		"foo": {
+			"name": "bar",
+			"to-file": "foobar",
+			"download": {
+				"mediawiki/semantic-media-wiki": "@stable"
+			}
+		}
+	}
+}
