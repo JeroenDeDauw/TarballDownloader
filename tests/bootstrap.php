@@ -14,5 +14,6 @@ if ( !is_readable( __DIR__ . '/../vendor/autoload.php' ) ) {
 $autoLoader = require_once __DIR__ . '/../vendor/autoload.php';
 
 $autoLoader->addPsr4( 'TarballDownloader\\Tests\\Integration\\', __DIR__ . '/integration/' );
+$autoLoader->addPsr4( 'TarballDownloader\\Tests\\', __DIR__ . '/Unit/' );
 
 unset( $autoLoader );
